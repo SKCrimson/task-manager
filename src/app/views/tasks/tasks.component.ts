@@ -43,8 +43,6 @@ export class TasksComponent implements OnInit, AfterViewInit {
     else
       this.dataSource.data = this.tasks;
 
-    this.addTableObjects();
-
     // @ts-ignore - показывает ошибку для типа даты, но так работает, т.к. можно возвращать любой тип
     this.dataSource.sortingDataAccessor = (task, colName) => {
       switch (colName) {
