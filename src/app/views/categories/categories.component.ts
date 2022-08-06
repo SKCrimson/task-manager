@@ -9,8 +9,8 @@ import {DataHandlerService} from "../../service/data-handler-service.service";
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: Category[] | undefined;
-  selectedCategory: Category | undefined;
+  categories!: Category[];
+  selectedCategory!: Category;
 
   constructor(private dataHandler: DataHandlerService) {
   }

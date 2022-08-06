@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-
 import {CommonModule} from "@angular/common";
 import {BrowserModule} from '@angular/platform-browser';
+
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
