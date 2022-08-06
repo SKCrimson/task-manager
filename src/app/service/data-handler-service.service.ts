@@ -20,8 +20,8 @@ export class DataHandlerService {
     this.tasksSubject.next(TestData.tasks);
   }
 
-  getTasksByCategory(category: Category) {
-    const tasks = TestData.tasks.filter(value => value.category === category);
+  fillTasksByCategory(category: Category) {
+    const tasks = TestData.tasks.filter(task => task.category === category);
     this.tasksSubject.next(tasks);
   }
 }
