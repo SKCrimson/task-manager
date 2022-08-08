@@ -8,18 +8,35 @@ import {Category} from "./model/Category";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'Тask Мanager';
 
   tasks!: Task[];
   categories!: Category[];
 
+  private selectedCategory: Category | undefined;
+
   constructor(private dataHandler: DataHandlerService) {
   }
 
   ngOnInit(): void {
-    this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
+    //this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
     this.dataHandler.getAllCatigories().subscribe(categories => this.categories = categories);
+    this.onSelectCategory(undefined);
+  }
+
+  onSelectCategory(category: Category | undefined) {
+
+    this.selectedCategory = category;
+
+    this.dataHandler.searchTasks(
+      this.selectedCategory,
+      undefined,
+      undefined,
+      undefined
+    ).subscribe(tasks => {
+      this.tasks = tasks;
+    });
   }
 }

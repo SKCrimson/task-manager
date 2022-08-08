@@ -16,8 +16,13 @@ export class TasksComponent implements OnInit {
   displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category'];
   dataSource!: MatTableDataSource<Task>;
 
-  @Input()
   tasks!: Task[];
+
+  @Input('tasks')
+  set setTasks(value: Task[]) {
+    this.tasks = value;
+    this.fillTable();
+  }
 
   @ViewChild(MatPaginator, {static: false}) private paginator!: MatPaginator;
   @ViewChild(MatSort, {static: false}) private sort!: MatSort;

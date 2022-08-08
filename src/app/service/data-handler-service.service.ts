@@ -4,6 +4,7 @@ import {Task} from "../model/Task";
 import {Observable} from "rxjs";
 import {TaskDAOArray} from "../data/dao/impl/TaskDAOArray";
 import {CategoryDAOArray} from "../data/dao/impl/CategoryDAOArray";
+import {Priority} from "../model/Priority";
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class DataHandlerService {
     return this.taskDaoArray.getAll();
   }
 
-  fillTasksByCategory(category: Category) {
-    // const tasks = TestData.tasks.filter(task => task.category === category);
-    // this.tasksSubject.next(tasks);
+  // поиск задач по параметрам
+  searchTasks(category: Category | undefined, searchText: string | undefined, status: boolean | undefined, priority: Priority | undefined): Observable<Task[]> {
+    return this.taskDaoArray.search(category, searchText, status, priority);
   }
 }
