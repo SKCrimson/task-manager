@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Category} from "../model/Category";
-import {TestData} from "../data/TestData";
 import {Task} from "../model/Task";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {TaskDAOArray} from "../data/dao/impl/TaskDAOArray";
+import {CategoryDAOArray} from "../data/dao/impl/CategoryDAOArray";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,13 @@ import {TaskDAOArray} from "../data/dao/impl/TaskDAOArray";
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArray();
-
-  tasksSubject = new BehaviorSubject<Task[]>(TestData.tasks);
-  categoriesSubject = new BehaviorSubject<Category[]>(TestData.categories);
+  private categoryDAOArray = new CategoryDAOArray();
 
   constructor() {
+  }
+
+  getAllCatigories(): Observable<Category[]> {
+    return this.categoryDAOArray.getAll();
   }
 
   getAllTasks(): Observable<Task[]> {
@@ -23,7 +25,7 @@ export class DataHandlerService {
   }
 
   fillTasksByCategory(category: Category) {
-    const tasks = TestData.tasks.filter(task => task.category === category);
-    this.tasksSubject.next(tasks);
+    // const tasks = TestData.tasks.filter(task => task.category === category);
+    // this.tasksSubject.next(tasks);
   }
 }

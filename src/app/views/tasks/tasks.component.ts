@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Task} from "../../model/Task";
 import {DataHandlerService} from "../../service/data-handler-service.service";
 
@@ -11,11 +11,12 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements OnInit {
 
   displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category'];
-
   dataSource!: MatTableDataSource<Task>;
+
+  @Input()
   tasks!: Task[];
 
   @ViewChild(MatPaginator, {static: false}) private paginator!: MatPaginator;
@@ -25,23 +26,20 @@ export class TasksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
-    this.refreshTable();
+    this.fillTable();
   }
 
-  ngAfterViewInit(): void {
-    this.addTableObjects();
-  }
+  // toggleTaskCompleted(task: Task) {
+  //   task.completed = !task.completed;
+  // }
 
-  toggleTaskCompleted(task: Task) {
-    task.completed = !task.completed;
-  }
-
-  private refreshTable() {
+  private fillTable() {
     if (this.dataSource == null)
       this.dataSource = new MatTableDataSource<Task>(this.tasks);
     else
       this.dataSource.data = this.tasks;
+
+    this.addTableObjects();
 
     // @ts-ignore - показывает ошибку для типа даты, но так работает, т.к. можно возвращать любой тип
     this.dataSource.sortingDataAccessor = (task, colName) => {
