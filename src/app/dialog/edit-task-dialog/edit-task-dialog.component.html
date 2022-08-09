@@ -1,1 +1,30 @@
-<p>edit-task-dialog works!</p>
+<!--редактирование/создания задачи-->
+<mat-dialog-content>
+  <p mat-dialog-title>{{dialogTitle}}</p>
+
+  <!--название задачи    -->
+  <mat-form-field>
+    <mat-label>Название (обязательно)</mat-label>
+    <input matInput
+           #inputTitle
+           [(ngModel)]="tmpTitle"
+           (keydown.enter)="onConfirm()"> <!-- по нажатию на enter можем сразу сохранить задачу -->
+    <button mat-button mat-icon-button matSuffix
+            *ngIf="tmpTitle.trim().length > 0"
+            (click)="tmpTitle= ''"
+            aria-label="Clear"
+            class="size22">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-dialog-content>
+
+<!--  кнопки возможных действий-->
+<mat-dialog-actions>
+  <button mat-raised-button
+          (click)="onConfirm()" [disabled]="inputTitle.value.trim().length==0"
+          color="primary">  <!-- если пустой текст - кнопка "Сохранить" будет недоступна -->
+    Сохранить
+  </button>
+  <button mat-raised-button (click)="onCancel()">Отмена</button>
+</mat-dialog-actions>

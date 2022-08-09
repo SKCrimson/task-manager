@@ -23,7 +23,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showTasksByCategory(category: Category) {
+  showTasksByCategory(category: Category): void {
 
     if (this.selectedCategory === category)
       return;

@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onEditTask(task: Task) {
+  onEditTask(task: Task): void {
     console.log(task);
   }
 }
