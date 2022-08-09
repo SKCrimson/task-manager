@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
     this.dataHandler.getAllCatigories().subscribe(categories => this.categories = categories);
     this.onSelectCategory(undefined);
   }
@@ -38,5 +37,9 @@ export class AppComponent implements OnInit {
     ).subscribe(tasks => {
       this.tasks = tasks;
     });
+  }
+
+  onEditTask(task: Task) {
+    console.log(task);
   }
 }
