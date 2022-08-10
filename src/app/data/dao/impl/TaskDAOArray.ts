@@ -54,8 +54,14 @@ export class TaskDAOArray implements TaskDAO {
     return allTasks;
   }
 
-  update(type: Task): Observable<Task> {
-    return new Observable<Task>();
+  update(task: Task): Observable<Task> {
+
+    const taskTmp = TestData.tasks.find(t => t.id === task.id);
+
+    if (taskTmp != null)
+      TestData.tasks.splice(TestData.tasks.indexOf(taskTmp), 1, task);
+
+    return of(task);
   }
 
 }

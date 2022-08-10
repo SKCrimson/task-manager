@@ -92,7 +92,11 @@ export class TasksComponent implements OnInit {
       autoFocus: false
     });
     dialogRef.afterClosed().subscribe(result => {
-      //TODO
+
+      if (result as Task){
+        this.updateTask.emit(task);
+        return;
+      }
     });
   }
 }

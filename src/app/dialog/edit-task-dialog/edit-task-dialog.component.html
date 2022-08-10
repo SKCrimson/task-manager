@@ -17,6 +17,27 @@
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Укажите категорию</mat-label>
+    <mat-select [(ngModel)]="tmpCategory">
+      <mat-option [value]="null">Без категории</mat-option>
+      <mat-option *ngFor="let c of categories" [value]="c">
+        {{c.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Укажите приоритет</mat-label>
+    <mat-select [(ngModel)]="tmpPriority">
+      <mat-option [value]="null">Без приоритета</mat-option>
+      <mat-option *ngFor="let p of priorities" [value]="p">
+        {{p.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-dialog-content>
 
 <!--  кнопки возможных действий-->

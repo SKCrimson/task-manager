@@ -21,14 +21,22 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataHandler.getAllCatigories().subscribe(categories => this.categories = categories);
+    this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
     this.onSelectCategory(undefined);
   }
 
   onSelectCategory(category: Category | undefined) {
 
     this.selectedCategory = category;
+    this.searchTaskByCategory();
+  }
 
+  onUpdateTask(task: Task): void {
+
+    this.dataHandler.updateTask(task).subscribe(() => this.searchTaskByCategory());
+  }
+
+  private searchTaskByCategory() {
     this.dataHandler.searchTasks(
       this.selectedCategory,
       undefined,
@@ -37,9 +45,5 @@ export class AppComponent implements OnInit {
     ).subscribe(tasks => {
       this.tasks = tasks;
     });
-  }
-
-  onEditTask(task: Task): void {
-    console.log(task);
   }
 }
