@@ -21,7 +21,7 @@ export class EditTaskDialogComponent implements OnInit {
     private dialog: MatDialog) {
   }
 
-  private task!: Task;
+  task!: Task;
 
   dialogTitle!: string;
   tmpTitle!: string;
@@ -72,5 +72,13 @@ export class EditTaskDialogComponent implements OnInit {
         this.dialogRef.close('delete');
       }
     });
+  }
+
+  complete() {
+    this.dialogRef.close("complete");
+  }
+
+  activate() {
+    this.dialogRef.close("activate");
   }
 }
