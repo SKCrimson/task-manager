@@ -21,8 +21,8 @@ export class CategoryDAOArray implements CategoryDAO {
     return new Observable<Category>();
   }
 
-  delete(id: number): Observable<Category> {
-    return new Observable<Category>();
+  delete(id: number): boolean {
+    return false;
   }
 
   search(title: string): Observable<Category[]> {

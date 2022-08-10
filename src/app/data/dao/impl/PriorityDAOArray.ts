@@ -8,8 +8,8 @@ export class PriorityDAOArray implements PriorityDAO {
     return new Observable<Priority>();
   }
 
-  delete(id: number): Observable<Priority> {
-    return new Observable<Priority>();
+  delete(id: number): boolean {
+    return false;
   }
 
   get(id: number): Observable<Priority | undefined> {

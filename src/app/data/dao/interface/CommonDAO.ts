@@ -10,7 +10,7 @@ export interface CommonDAO<T> {
 
   update(type: T): Observable<T>;
 
-  delete(id: number): Observable<T>;
+  delete(id: number): boolean;
 
   add(type: T): Observable<T>;
 
