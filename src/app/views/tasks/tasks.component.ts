@@ -94,6 +94,7 @@ export class TasksComponent implements OnInit {
       data: [task, 'Редактирование задачи'],
       autoFocus: false
     });
+
     dialogRef.afterClosed().subscribe(result => {
 
       if (result === 'complete') {

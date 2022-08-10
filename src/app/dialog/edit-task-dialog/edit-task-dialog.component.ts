@@ -31,6 +31,7 @@ export class EditTaskDialogComponent implements OnInit {
 
   priorities!: Priority[];
   tmpPriority: Priority | undefined;
+  tmpDate: Date | undefined;
 
   ngOnInit(): void {
     this.dialogTitle = this.data[1];
@@ -42,12 +43,14 @@ export class EditTaskDialogComponent implements OnInit {
     this.tmpTitle = this.task.title;
     this.tmpCategory = this.task.category;
     this.tmpPriority = this.task.priority;
+    this.tmpDate = this.task.date;
   }
 
   onConfirm() {
     this.task.title = this.tmpTitle;
     this.task.category = this.tmpCategory;
     this.task.priority = this.tmpPriority;
+    this.task.date = this.tmpDate;
 
     this.dialogRef.close(this.task);
   }
