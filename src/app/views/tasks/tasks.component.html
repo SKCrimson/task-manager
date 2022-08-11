@@ -52,9 +52,42 @@
       <!--категория-->
       <ng-container matColumnDef="category">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Категория</th>
-        <td mat-cell class="col-category" *matCellDef="let task"
+        <td mat-cell class="col-category"
+            *matCellDef="let task"
+            (click)="task.category && !task.completed && onSelectCategory(task.category)"
             [ngClass]="{'completed': task.completed, 'no-value': task.category == null, 'link': !task.completed && task.category}">
           {{task.category ? task.category.title : "Без категории"}}
+        </td>
+      </ng-container>
+
+      <!--доступные действия над задачей-->
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell class="col-operations"
+            *matCellDef="let task"
+            [class.completed]="task.completed">
+          <button mat-icon-button
+                  (click)="openDeleteDialog(task)"
+                  class="delete-icon">
+            <mat-icon aria-hidden="false">delete</mat-icon>
+          </button>
+          <button mat-icon-button
+                  (click)="openEditTaskDialog(task)"
+                  class="edit-icon">
+            <mat-icon aria-hidden="false">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- галочка для выполнения/активации задачи-->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell class="col-select text-right" *matCellDef="let task">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? onToggleStatus(task) : null"
+            [checked]="task.completed">
+          </mat-checkbox>
         </td>
       </ng-container>
 

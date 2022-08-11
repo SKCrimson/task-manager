@@ -60,7 +60,6 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   delete() {
-
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '500px',
       data: {

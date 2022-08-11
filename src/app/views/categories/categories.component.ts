@@ -12,7 +12,8 @@ export class CategoriesComponent implements OnInit {
   @Input()
   categories!: Category[];
 
-  selectedCategory!: Category;
+  @Input()
+  selectedCategory: Category | undefined;
 
   @Output()
   actualCategory = new EventEmitter<Category>();
