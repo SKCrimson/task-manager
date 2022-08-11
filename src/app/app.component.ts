@@ -39,6 +39,19 @@ export class AppComponent implements OnInit {
       this.searchTaskByCategory();
   }
 
+  onUpdateCategory(category: Category) {
+    this.dataHandler.updateCategory(category).subscribe(() => {
+      this.onSelectCategory(this.selectedCategory);
+    });
+  }
+
+  onDeleteCategory(category: Category) {
+    if (this.dataHandler.deleteCategory(category.id)) {
+      this.selectedCategory = undefined;
+      this.onSelectCategory(this.selectedCategory);
+    }
+  }
+
   private searchTaskByCategory() {
     this.dataHandler.searchTasks(
       this.selectedCategory,

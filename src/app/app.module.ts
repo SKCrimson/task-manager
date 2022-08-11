@@ -26,6 +26,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { EditCategoryDialogComponent } from './dialog/edit-category-dialog/edit-category-dialog.component';
 
 registerLocaleData(localeRu);
 
@@ -36,7 +37,8 @@ registerLocaleData(localeRu);
     TasksComponent,
     EditTaskDialogComponent,
     ConfirmDialogComponent,
-    TaskDatePipe
+    TaskDatePipe,
+    EditCategoryDialogComponent
   ],
   imports: [
     CommonModule,

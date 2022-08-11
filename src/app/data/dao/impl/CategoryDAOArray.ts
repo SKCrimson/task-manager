@@ -17,11 +17,29 @@ export class CategoryDAOArray implements CategoryDAO {
     return new Observable<Category>();
   }
 
-  update(type: Category): Observable<Category> {
-    return new Observable<Category>();
+  update(category: Category): Observable<Category> {
+    const tmpCategory = TestData.categories.find(t => t.id === category.id);
+
+    if (tmpCategory != null)
+      TestData.categories.splice(TestData.categories.indexOf(tmpCategory), 1, category);
+
+    return of(category);
   }
 
   delete(id: number): boolean {
+    TestData.tasks.forEach(task => {
+      if (task.category && task.category.id === id) {
+        task.category = undefined;
+      }
+    });
+
+    const tmpCategory = TestData.categories.find(t => t.id === id);
+
+    if (tmpCategory != null) {
+      TestData.categories.splice(TestData.categories.indexOf(tmpCategory), 1);
+      return true;
+    }
+
     return false;
   }
 

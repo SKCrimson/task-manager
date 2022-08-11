@@ -13,14 +13,14 @@ import {PriorityDAOArray} from "../data/dao/impl/PriorityDAOArray";
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArray();
-  private categoryDAOArray = new CategoryDAOArray();
-  private priorityDAOArray = new PriorityDAOArray();
+  private categoryDaoArray = new CategoryDAOArray();
+  private priorityDaoArray = new PriorityDAOArray();
 
   constructor() {
   }
 
   getAllCategories(): Observable<Category[]> {
-    return this.categoryDAOArray.getAll();
+    return this.categoryDaoArray.getAll();
   }
 
   getAllTasks(): Observable<Task[]> {
@@ -28,7 +28,7 @@ export class DataHandlerService {
   }
 
   getAllPriorities(): Observable<Priority[]> {
-    return this.priorityDAOArray.getAll();
+    return this.priorityDaoArray.getAll();
   }
 
   // поиск задач по параметрам
@@ -42,5 +42,13 @@ export class DataHandlerService {
 
   deleteTask(id: number): boolean {
     return this.taskDaoArray.delete(id);
+  }
+
+  updateCategory(category: Category): Observable<Category> {
+    return this.categoryDaoArray.update(category);
+  }
+
+  deleteCategory(id: number): boolean {
+    return this.categoryDaoArray.delete(id);
   }
 }
