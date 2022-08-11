@@ -15,16 +15,24 @@ export class TaskDatePipe implements PipeTransform {
     date = new Date(date);
     const currentDate = new Date();
 
-    if (date === currentDate)
+    if (date == currentDate)
       return 'Сегодня';
 
-    // const date1 = currentDate.setDate(currentDate.getDate() + 1);
-    // if (date === date1)
-    //   return 'Вчера';
-    //
-    // if (date === currentDate + 1)
-    //   return 'Завтра';
+    const date1 = this.addDays(currentDate, -1);
+
+    if (date == date1)
+      return 'Вчера';
+
+    const date2 = this.addDays(currentDate, 1);
+
+    if (date == date2)
+      return 'Завтра';
 
     return new DatePipe('ru-RU').transform(date, format);
+  }
+
+  private addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
   }
 }
