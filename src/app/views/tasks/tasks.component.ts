@@ -9,6 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditTaskDialogComponent} from "../../dialog/edit-task-dialog/edit-task-dialog.component";
 import {ConfirmDialogComponent} from "../../dialog/confirm-dialog/confirm-dialog.component";
 import {Category} from "../../model/Category";
+import {Priority} from "../../model/Priority";
 
 @Component({
   selector: 'app-tasks',
@@ -21,11 +22,21 @@ export class TasksComponent implements OnInit {
   dataSource!: MatTableDataSource<Task>;
 
   tasks!: Task[];
+  priorities!: Priority[];
+
+  searchTaskText = '';
+  selectedStatusFilter: boolean | undefined;
+  selectedPriorityFilter: Priority | undefined | null;
 
   @Input('tasks')
   set setTasks(value: Task[]) {
     this.tasks = value;
     this.fillTable();
+  }
+
+  @Input('priorities')
+  set setPriorities(priorities: Priority[]) {
+    this.priorities = priorities;
   }
 
   @Output()
@@ -36,6 +47,18 @@ export class TasksComponent implements OnInit {
 
   @Output()
   selectCategory = new EventEmitter<Category>();
+
+  @Output()
+  filterByTitle = new EventEmitter<string>();
+
+  @Output()
+  filterByStatus = new EventEmitter<boolean | undefined>();
+
+  @Output()
+  filterByPriority = new EventEmitter<Priority | undefined>();
+
+  @Output()
+  clearFilters = new EventEmitter<any>();
 
   @ViewChild(MatPaginator, {static: false}) private paginator!: MatPaginator;
   @ViewChild(MatSort, {static: false}) private sort!: MatSort;
@@ -145,5 +168,31 @@ export class TasksComponent implements OnInit {
 
   onSelectCategory(category: Category): void {
     this.selectCategory.emit(category);
+  }
+
+  onFilterByTitle(): void {
+    this.filterByTitle.emit(this.searchTaskText);
+  }
+
+  onFilterByStatus(value: boolean | undefined): void {
+    if (value !== this.selectedStatusFilter) {
+      this.selectedStatusFilter = value;
+      this.filterByStatus.emit(this.selectedStatusFilter);
+    }
+  }
+
+  onFilterByPriority(value: Priority | undefined): void {
+    if (value != this.selectedPriorityFilter) {
+      this.selectedPriorityFilter = value;
+      this.filterByPriority.emit(this.selectedPriorityFilter);
+    }
+  }
+
+  onClearFilters() {
+    this.searchTaskText = '';
+    this.selectedStatusFilter = undefined;
+    this.selectedPriorityFilter = undefined;
+
+    this.clearFilters.emit();
   }
 }

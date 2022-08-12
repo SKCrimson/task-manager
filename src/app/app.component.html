@@ -1,9 +1,9 @@
 <div class="wrapper ">
 
   <app-categories
-    (actualCategory)="onSelectCategory($event)"
     [selectedCategory]="selectedCategory"
     [categories]="categories"
+    (actualCategory)="onSelectCategory($event)"
     (deleteCategory)="onDeleteCategory($event)"
     (updateCategory)="onUpdateCategory($event)">
   </app-categories>
@@ -85,9 +85,14 @@
           <div class="col-12">
             <app-tasks
               [tasks]="tasks"
+              [priorities]="priorities"
               (updateTask)="onUpdateTask($event)"
               (selectCategory)="onSelectCategory($event)"
-              (deleteTask)="onDeleteTask($event)">
+              (deleteTask)="onDeleteTask($event)"
+              (filterByStatus)="onFilterByStatus($event)"
+              (filterByPriority)="onFilterByPriority($event)"
+              (filterByTitle)="onFilterByTitle($event)"
+              (clearFilters)="onClearFilter($event)">
             </app-tasks>
           </div>
         </div>

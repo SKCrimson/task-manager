@@ -38,6 +38,10 @@
   width: 3%;
 }
 
+.col-checkbox{
+  margin-top: 8px;
+}
+
 .col-operations {
   width: 8%;
 }

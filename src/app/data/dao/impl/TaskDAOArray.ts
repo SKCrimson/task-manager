@@ -33,7 +33,7 @@ export class TaskDAOArray implements TaskDAO {
   delete(id: number): boolean {
     const taskTmp = TestData.tasks.find(t => t.id === id);
 
-    if (taskTmp != null){
+    if (taskTmp != null) {
       TestData.tasks.splice(TestData.tasks.indexOf(taskTmp), 1);
       return true;
     }
@@ -66,7 +66,16 @@ export class TaskDAOArray implements TaskDAO {
     let allTasks = TestData.tasks;
 
     if (category != null)
-      allTasks = allTasks.filter(todo => todo.category === category);
+      allTasks = allTasks.filter(task => task.category === category);
+
+    if (status != null)
+      allTasks = allTasks.filter(task => task.completed === status);
+
+    if (priority != null)
+      allTasks = allTasks.filter(task => task.priority === priority);
+
+    if (searchText != null)
+      allTasks = allTasks.filter(task => task.title.toLowerCase().includes(searchText.toLowerCase()));
 
     return allTasks;
   }
