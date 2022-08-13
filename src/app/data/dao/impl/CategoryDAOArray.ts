@@ -13,8 +13,17 @@ export class CategoryDAOArray implements CategoryDAO {
     return new Observable<Category>();
   }
 
-  add(type: Category): Observable<Category> {
-    return new Observable<Category>();
+  add(category: Category): Observable<Category> {
+    if (category.id === 0)
+      category.id = this.getLastIdCategory();
+
+    TestData.categories.push(category);
+
+    return of(category);
+  }
+
+  private getLastIdCategory(): number {
+    return Math.max.apply(Math, TestData.categories.map(category => category.id)) + 1;
   }
 
   update(category: Category): Observable<Category> {

@@ -36,12 +36,20 @@ export class DataHandlerService {
     return this.taskDaoArray.search(category, searchText, status, priority);
   }
 
+  addTask(task: Task): Observable<Task> {
+    return this.taskDaoArray.add(task);
+  }
+
   updateTask(task: Task): Observable<Task> {
     return this.taskDaoArray.update(task);
   }
 
   deleteTask(id: number): boolean {
     return this.taskDaoArray.delete(id);
+  }
+
+  addCategory(title: string) {
+    return this.categoryDaoArray.add(new Category(0, title));
   }
 
   updateCategory(category: Category): Observable<Category> {

@@ -26,3 +26,29 @@
   margin-top: -6px;
   color: #c0c0c0;
 }
+
+.add-icon {
+  cursor: pointer;
+  font-size: 22px;
+  vertical-align: middle;
+  margin-top: 7px;
+}
+
+span.add-icon-area {
+  width: 15%;
+  display: inline-block;
+  text-align: left;
+}
+
+#categories {
+  width: 100%;
+  overflow-x: hidden; /* чтобы не было гориз. прокрутки */
+}
+
+.nav-title {
+  width: 85%;
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle
+}

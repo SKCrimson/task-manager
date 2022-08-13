@@ -28,11 +28,15 @@
             color="primary">
       Сохранить
     </button>
-    <button mat-raised-button (click)="onCancel()">Отмена</button>
+    <button mat-raised-button
+            (click)="onCancel()">
+      Отмена
+    </button>
   </div>
 
   <div class="col-md-4 col-12 text-right">
     <button mat-button
+            *ngIf="canEdit()"
             (click)="delete()"
             class="red">
       Удалить

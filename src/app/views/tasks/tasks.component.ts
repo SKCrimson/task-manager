@@ -10,6 +10,7 @@ import {EditTaskDialogComponent} from "../../dialog/edit-task-dialog/edit-task-d
 import {ConfirmDialogComponent} from "../../dialog/confirm-dialog/confirm-dialog.component";
 import {Category} from "../../model/Category";
 import {Priority} from "../../model/Priority";
+import {OpenType} from "../../dialog/OpenType";
 
 @Component({
   selector: 'app-tasks',
@@ -38,6 +39,12 @@ export class TasksComponent implements OnInit {
   set setPriorities(priorities: Priority[]) {
     this.priorities = priorities;
   }
+
+  @Input()
+  actualCategory: Category | undefined;
+
+  @Output()
+  addTask = new EventEmitter<Task>();
 
   @Output()
   updateTask = new EventEmitter<Task>();
@@ -115,7 +122,7 @@ export class TasksComponent implements OnInit {
 
   openEditTaskDialog(task: Task): void {
     const dialogRef = this.dialog.open(EditTaskDialogComponent, {
-      data: [task, 'Редактирование задачи'],
+      data: [task, 'Редактирование задачи', OpenType.EDIT],
       autoFocus: false
     });
 
@@ -188,7 +195,17 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  onClearFilters() {
+  openAddTaskDialog(): void {
+    const task = new Task(0, '', false, undefined, this.actualCategory, undefined);
+
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {data: [task, 'Добавление задачи', OpenType.ADD]});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.addTask.emit(task);
+    });
+  }
+
+  onClearFilters(): void {
     this.searchTaskText = '';
     this.selectedStatusFilter = undefined;
     this.selectedPriorityFilter = undefined;

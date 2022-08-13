@@ -5,7 +5,8 @@
     [categories]="categories"
     (actualCategory)="onSelectCategory($event)"
     (deleteCategory)="onDeleteCategory($event)"
-    (updateCategory)="onUpdateCategory($event)">
+    (updateCategory)="onUpdateCategory($event)"
+    (addCategory)="onAddCategory($event)">
   </app-categories>
 
   <div class="main-panel">
@@ -86,7 +87,10 @@
             <app-tasks
               [tasks]="tasks"
               [priorities]="priorities"
+              [actualCategory]="selectedCategory"
+
               (updateTask)="onUpdateTask($event)"
+              (addTask)="onAddTask($event)"
               (selectCategory)="onSelectCategory($event)"
               (deleteTask)="onDeleteTask($event)"
               (filterByStatus)="onFilterByStatus($event)"

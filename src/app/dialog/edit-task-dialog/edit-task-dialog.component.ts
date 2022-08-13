@@ -5,6 +5,7 @@ import {Task} from "../../model/Task";
 import {Category} from "../../model/Category";
 import {Priority} from "../../model/Priority";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
+import {OpenType} from "../OpenType";
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -16,7 +17,7 @@ export class EditTaskDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<EditTaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: [Task, string],
+    @Inject(MAT_DIALOG_DATA) private data: [Task, string, OpenType],
     private dataHandler: DataHandlerService,
     private dialog: MatDialog) {
   }
@@ -33,6 +34,8 @@ export class EditTaskDialogComponent implements OnInit {
   tmpPriority: Priority | undefined;
   tmpDate: Date | undefined;
 
+  openType!: OpenType;
+
   ngOnInit(): void {
     this.dialogTitle = this.data[1];
 
@@ -44,6 +47,8 @@ export class EditTaskDialogComponent implements OnInit {
     this.tmpCategory = this.task.category;
     this.tmpPriority = this.task.priority;
     this.tmpDate = this.task.date;
+
+    this.openType = this.data[2];
   }
 
   onConfirm() {
@@ -82,5 +87,9 @@ export class EditTaskDialogComponent implements OnInit {
 
   activate() {
     this.dialogRef.close("activate");
+  }
+
+  canEdit(): boolean{
+    return this.openType === OpenType.EDIT;
   }
 }

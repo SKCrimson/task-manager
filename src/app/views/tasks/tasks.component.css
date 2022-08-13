@@ -67,3 +67,11 @@
   color: #9c27b0 !important;
   font-weight: normal;
 }
+
+.search-margin{
+  margin-top: -25px;
+}
+
+.button-margin{
+  margin-top: 12px;
+}
