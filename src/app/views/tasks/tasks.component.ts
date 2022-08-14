@@ -74,7 +74,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fillTable();
+    //this.onSelectCategory(undefined);
   }
 
   private fillTable(): void {
@@ -173,7 +173,7 @@ export class TasksComponent implements OnInit {
     this.updateTask.emit(task);
   }
 
-  onSelectCategory(category: Category): void {
+  onSelectCategory(category: Category | undefined): void {
     this.selectCategory.emit(category);
   }
 
