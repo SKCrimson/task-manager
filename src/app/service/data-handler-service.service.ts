@@ -59,4 +59,8 @@ export class DataHandlerService {
   deleteCategory(id: number): boolean {
     return this.categoryDaoArray.delete(id);
   }
+
+  searchCategories(title: string): Observable<Category[]> {
+    return this.categoryDaoArray.search(title);
+  }
 }

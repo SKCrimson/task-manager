@@ -3,7 +3,6 @@ import {DataHandlerService} from "./service/data-handler-service.service";
 import {Task} from "./model/Task";
 import {Category} from "./model/Category";
 import {Priority} from "./model/Priority";
-import {__assign} from "tslib";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +21,7 @@ export class AppComponent implements OnInit {
   searchTask: string | undefined;
   searchStatus: boolean | undefined;
   searchPriority: Priority | undefined;
+  private searchCategoryText = '';
 
   constructor(private dataHandler: DataHandlerService) {
   }
@@ -33,11 +33,6 @@ export class AppComponent implements OnInit {
     this.onSelectCategory(undefined);
   }
 
-  onSelectCategory(category: Category | undefined) {
-    this.selectedCategory = category;
-    this.refreshTasks();
-  }
-
   onUpdateTask(task: Task): void {
     this.dataHandler.updateTask(task).subscribe(() => this.refreshTasks());
   }
@@ -45,19 +40,6 @@ export class AppComponent implements OnInit {
   onDeleteTask(task: Task): void {
     if (this.dataHandler.deleteTask(task.id))
       this.refreshTasks();
-  }
-
-  onUpdateCategory(category: Category) {
-    this.dataHandler.updateCategory(category).subscribe(() => {
-      this.onSelectCategory(this.selectedCategory);
-    });
-  }
-
-  onDeleteCategory(category: Category) {
-    if (this.dataHandler.deleteCategory(category.id)) {
-      this.selectedCategory = undefined;
-      this.onSelectCategory(this.selectedCategory);
-    }
   }
 
   onFilterByTitle(searchTitle: string | undefined) {
@@ -89,12 +71,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onAddCategory(title: string) {
-    this.dataHandler.addCategory(title).subscribe(() =>
-      this.refreshCategories()
-    );
-  }
-
   private refreshTasks() {
     this.dataHandler.searchTasks(
       this.selectedCategory,
@@ -106,7 +82,40 @@ export class AppComponent implements OnInit {
     });
   }
 
+  onSelectCategory(category: Category | undefined) {
+    this.selectedCategory = category;
+    this.refreshCategories();
+    this.refreshTasks();
+  }
+
+  onAddCategory(title: string) {
+    this.dataHandler.addCategory(title).subscribe(() =>
+      this.refreshCategories()
+    );
+  }
+
+  onUpdateCategory(category: Category) {
+    this.dataHandler.updateCategory(category).subscribe(() => {
+      this.onSelectCategory(this.selectedCategory);
+    });
+  }
+
+  onDeleteCategory(category: Category) {
+    if (this.dataHandler.deleteCategory(category.id)) {
+      this.selectedCategory = undefined;
+      this.onSelectCategory(this.selectedCategory);
+    }
+  }
+
+  onSearchCategory(title: string) {
+    //this.searchCategoryText = title;
+
+    this.dataHandler.searchCategories(title).subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
   private refreshCategories(){
-      this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+    this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
   }
 }

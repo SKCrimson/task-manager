@@ -6,7 +6,8 @@ import {TestData} from "../../TestData";
 export class CategoryDAOArray implements CategoryDAO {
 
   getAll(): Observable<Category[]> {
-    return of(TestData.categories);
+    return of(TestData.categories
+      .sort((c1, c2) => c1.title.localeCompare(c2.title)));
   }
 
   get(id: number): Observable<Category | undefined> {
@@ -53,7 +54,11 @@ export class CategoryDAOArray implements CategoryDAO {
   }
 
   search(title: string): Observable<Category[]> {
-    return new Observable<Category[]>();
-  }
+    if (title == '')
+      return this.getAll();
 
+    return of(
+      TestData.categories.filter(category => category.title.toLowerCase().startsWith(title.toLowerCase()))
+      .sort((c1, c2) => c1.title.localeCompare(c2.title)));
+  }
 }
