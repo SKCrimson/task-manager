@@ -50,20 +50,21 @@ export class TaskDAOArray implements TaskDAO {
     return false;
   }
 
-  getCompletedCountInCategory(category: Category): Observable<number> {
-    return new Observable<number>();
+// статистика
+  getTotalCountInCategory(category: Category | undefined): Observable<number> {
+    return of(this.searchTasks(category, undefined, undefined, undefined).length)
+  }
+
+  getCompletedCountInCategory(category: Category | undefined): Observable<number> {
+    return of(this.searchTasks(category, undefined, true, undefined).length)
+  }
+
+  getUncompletedCountInCategory(category: Category | undefined): Observable<number> {
+    return of(this.searchTasks(category, undefined, false, undefined).length)
   }
 
   getTotalCount(): Observable<number> {
-    return new Observable<number>();
-  }
-
-  getTotalCountInCategory(category: Category): Observable<number> {
-    return new Observable<number>();
-  }
-
-  getUncompletedCountInCategory(category: Category): Observable<number> {
-    return new Observable<number>();
+    return of(TestData.tasks.length);
   }
 
   search(category: Category | undefined, searchText: string | undefined, status: boolean | undefined, priority: Priority | undefined): Observable<Task[]> {
