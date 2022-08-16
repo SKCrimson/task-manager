@@ -40,6 +40,7 @@
         <a class="nav-link pointer">
           <!-- название категории-->
           <span class="all-category-title">Все</span>
+          <span class="uncompleted-count">0</span>
         </a>
       </li>
 
@@ -49,20 +50,22 @@
       <div *ngIf="categories.length == 0"><p class="not-found">Ничего не найдено</p></div>
 
       <li class="nav-item pointer"
-          *ngFor="let category of categories; let index=index"
-          (click)="showTasksByCategory(category)"
+          *ngFor="let mapValue of categoryMap | keyvalue; let index=index"
+          (click)="showTasksByCategory(mapValue.key)"
           (mouseleave)="showEditIcon(undefined)"
           (mouseenter)="showEditIcon(index)"
-          [class.active]="category === selectedCategory">
+          [class.active]="mapValue.key === selectedCategory">
         <a class="nav-link">
-          <span class="category-title">{{category.title}}</span>
+          <span class="category-title">{{mapValue.key.title}}</span>
           <span class="edit-category-icon-area">
             <mat-icon class="edit-category-icon"
-                      (click)="$event.stopPropagation(); openEditDialog(category)"
+                      (click)="$event.stopPropagation(); openEditDialog(mapValue.key)"
                       *ngIf="indexMouseMove === index">
               edit
             </mat-icon>
           </span>
+          <!--сколько невыполненных задач-->
+          <span class="uncompleted-count">{{mapValue.value}}</span>
         </a>
       </li>
     </ul>

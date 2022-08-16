@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
 
   title = 'Тask Мanager';
 
+  categoryMap = new Map<Category, number>();
+
   tasks!: Task[];
   categories!: Category[];
   priorities!: Priority[];
@@ -141,7 +143,18 @@ export class AppComponent implements OnInit {
   }
 
   private refreshCategories() {
+
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+
+    if (this.categoryMap)
+      this.categoryMap.clear();
+
+    this.categories = this.categories.sort((a, b) => a.title.localeCompare(b.title));
+    this.categories.forEach(c => {
+      this.dataHandler.getUncompletedCountInCategory(c)
+        .subscribe(count => this.categoryMap.set(c, count));
+    })
+
   }
 
   toggleStat(showStat: boolean) {

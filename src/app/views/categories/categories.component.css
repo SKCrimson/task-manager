@@ -1,29 +1,11 @@
 .line {
   border-bottom: 1px solid #e5e5e5;
   margin: 20px 15px 0 15px;
-}
-
-.edit-category-icon-area {
-  width: 10%;
-  display: inline-block;
-  text-align: left;
-  font-size: 13px
+  padding-top: 2px;
 }
 
 .category{
   margin-top: 20px;
-}
-
-.category-title {
-  width: 80%;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.all-category-title {
-  width: 85%;
-  display: inline-block;
-  font-size: 16px;
 }
 
 .edit-category-icon {
@@ -69,7 +51,31 @@ span.add-icon-area {
   font-size: 22px
 }
 
-.line {
-  border-bottom: 1px solid #dadada;
-  padding-top: 2px;
+.all-category-title {
+  width: 85%;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.category-title {
+  width: 70%;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.edit-category-icon-area {
+  width: 15%;
+  display: inline-block;
+  text-align: left;
+  font-size: 13px
+}
+
+.uncompleted-count {
+  background-color: #eaeaea;
+  border-radius: 3px;
+  padding: 5px;
+  color: black;
+  width: 15%;
+  display: inline-block;
+  text-align: center;
 }

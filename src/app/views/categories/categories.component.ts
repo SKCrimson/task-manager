@@ -18,6 +18,12 @@ export class CategoriesComponent implements OnInit {
   @Input()
   selectedCategory: Category | undefined;
 
+  categoryMap!: Map<Category, number>;
+  @Input('categoryMap')
+  set setCategoryMap(categoryMap: Map<Category, number>) {
+    this.categoryMap = categoryMap;
+  }
+
   @Output()
   actualCategory = new EventEmitter<Category>();
 
