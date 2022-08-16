@@ -4,7 +4,6 @@ import {Task} from "./model/Task";
 import {Category} from "./model/Category";
 import {Priority} from "./model/Priority";
 import {zip} from "rxjs";
-import {argsOrArgArray} from "rxjs/internal/util/argsOrArgArray";
 
 @Component({
   selector: 'app-root',
@@ -28,6 +27,8 @@ export class AppComponent implements OnInit {
   completedCountInCategory!: number;
   uncompletedCountInCategory!: number;
   uncompletedTotalTasksCount!: number;
+
+  showStat!: boolean;
 
   constructor(private dataHandler: DataHandlerService) {
   }
@@ -143,4 +144,7 @@ export class AppComponent implements OnInit {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
   }
 
+  toggleStat(showStat: boolean) {
+    this.showStat = showStat;
+  }
 }
