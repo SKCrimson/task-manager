@@ -14,8 +14,8 @@
   cursor: pointer;
 }
 
-.size22 {
-  font-size: 22px !important;
+.size25 {
+  font-size: 25px !important;
 }
 
 .mat-form-field {
@@ -23,7 +23,7 @@
 }
 
 .mat-dialog-container {
-  padding: 34px !important;
+  padding: 40px !important;
 }
 
 .red {
@@ -37,4 +37,17 @@
 .link {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.gray {
+  color: #8f8f8f;
+}
+
+.main-panel > .content{
+  margin-top: 30px !important;
+  padding: 20px 15px 0 15px;
+}
+
+app-header{
+  width: 100% !important;
 }

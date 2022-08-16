@@ -1,4 +1,4 @@
-<div class="wrapper ">
+<div class="wrapper">
 
   <app-categories
     [selectedCategory]="selectedCategory"
@@ -12,9 +12,9 @@
   </app-categories>
 
   <div class="main-panel">
-
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-      <app-header></app-header>
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
+      <app-header [categoryName]="selectedCategory ? selectedCategory.title : 'Все'">
+      </app-header>
     </nav>
 
     <div class="content">

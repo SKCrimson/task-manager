@@ -10,6 +10,10 @@
   font-size: 13px
 }
 
+.category{
+  margin-top: 20px;
+}
+
 .category-title {
   width: 80%;
   display: inline-block;
@@ -63,4 +67,9 @@ span.add-icon-area {
 .search-category-button {
   margin-left: 10px;
   font-size: 22px
+}
+
+.line {
+  border-bottom: 1px solid #dadada;
+  padding-top: 2px;
 }
