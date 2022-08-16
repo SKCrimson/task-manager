@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {SettingsDialogComponent} from "../../dialog/settings-dialog/settings-dialog.component";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Output()
   toggleStat = new EventEmitter<boolean>();
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -25,5 +27,10 @@ export class HeaderComponent implements OnInit {
   onToggleStat() {
     this.showStat = !this.showStat;
     this.toggleStat.emit(this.showStat);
+  }
+
+  showSettings() {
+    const dialogRef = this.dialog.open(SettingsDialogComponent,
+      {autoFocus: false, width: '500px'});
   }
 }

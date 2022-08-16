@@ -35,7 +35,7 @@ export class EditCategoryDialogComponent implements OnInit {
     this.dialogRef.close(false);
   }
 
-  delete() {
+  onDelete() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '440px',
       data: {
@@ -52,7 +52,7 @@ export class EditCategoryDialogComponent implements OnInit {
     });
   }
 
-  canEdit(): boolean{
+  canDelete(): boolean{
     return this.openType === OpenType.EDIT;
   }
 }

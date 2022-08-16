@@ -13,7 +13,7 @@
             (click)="categoryTitle= ''"
             *ngIf="categoryTitle.trim().length > 0"
             aria-label="Clear"
-            class="clear-icon size25">
+            class="clear-icon size22">
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
@@ -36,8 +36,8 @@
 
   <div class="col-md-4 col-12 text-right">
     <button mat-button
-            *ngIf="canEdit()"
-            (click)="delete()"
+            *ngIf="canDelete()"
+            (click)="onDelete()"
             class="red">
       Удалить
     </button>
