@@ -24,6 +24,9 @@ export class CategoriesComponent implements OnInit {
     this.categoryMap = categoryMap;
   }
 
+  @Input()
+  uncompletedTotal: number | undefined;
+
   @Output()
   actualCategory = new EventEmitter<Category>();
 

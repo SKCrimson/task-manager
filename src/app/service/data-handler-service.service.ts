@@ -74,7 +74,7 @@ export class DataHandlerService {
   }
 
   getUncompletedTotalCount(): Observable<number> {
-    return this.taskDaoArray.getTotalCount();
+    return this.taskDaoArray.getUncompletedTotalCount();
   }
 
   getAllPriorities(): Observable<Priority[]> {

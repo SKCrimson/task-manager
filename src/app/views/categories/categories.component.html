@@ -40,7 +40,7 @@
         <a class="nav-link pointer">
           <!-- название категории-->
           <span class="all-category-title">Все</span>
-          <span class="uncompleted-count">0</span>
+          <span class="uncompleted-count">{{uncompletedTotal}}</span>
         </a>
       </li>
 
@@ -59,8 +59,9 @@
           <span class="category-title">{{mapValue.key.title}}</span>
           <span class="edit-category-icon-area">
             <mat-icon class="edit-category-icon"
-                      (click)="$event.stopPropagation(); openEditDialog(mapValue.key)"
-                      *ngIf="indexMouseMove === index">
+                      *ngIf="indexMouseMove === index"
+                      (click)="$event.stopPropagation();
+                      openEditDialog(mapValue.key)">
               edit
             </mat-icon>
           </span>

@@ -4,6 +4,7 @@
     [selectedCategory]="selectedCategory"
     [categories]="categories"
     [categoryMap]="categoryMap"
+    [uncompletedTotal]="uncompletedTotalTasksCount"
 
     (actualCategory)="onSelectCategory($event)"
     (deleteCategory)="onDeleteCategory($event)"
@@ -42,7 +43,7 @@
               (filterByStatus)="onFilterByStatus($event)"
               (filterByPriority)="onFilterByPriority($event)"
               (filterByTitle)="onFilterByTitle($event)"
-              (clearFilters)="onClearFilter()">
+              (clearFilters)="onClearTaskFilter()">
             </app-tasks>
           </div>
         </div>

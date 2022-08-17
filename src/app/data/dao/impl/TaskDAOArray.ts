@@ -63,6 +63,10 @@ export class TaskDAOArray implements TaskDAO {
     return of(this.searchTasks(category, undefined, false, undefined).length)
   }
 
+  getUncompletedTotalCount(): Observable<number> {
+    return of(this.searchTasks(undefined, undefined, false, undefined).length)
+  }
+
   getTotalCount(): Observable<number> {
     return of(TestData.tasks.length);
   }
