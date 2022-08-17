@@ -97,13 +97,13 @@ export class AppComponent implements OnInit {
     this.refreshTasks();
   }
 
-  private refreshTasks() {
+  private refreshTasks(): void {
     this.dataHandler.searchTasks(
       this.selectedCategory,
       this.searchTask,
       this.searchStatus,
       this.searchPriority
-    ).subscribe(tasks => {
+    ).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
     });
   }

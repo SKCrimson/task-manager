@@ -83,9 +83,9 @@
 
   <div class="col-md-12 task-list">
     <div class="card">
-<!--      <div class="card-header card-header-warning">-->
-<!--        <h4 class="card-title">Список задач</h4>-->
-<!--      </div>-->
+      <!--      <div class="card-header card-header-warning">-->
+      <!--        <h4 class="card-title">Список задач</h4>-->
+      <!--      </div>-->
       <div class="card-body table-responsive" *ngIf="tasks && tasks.length > 0">
         <table mat-table matSort [dataSource]="dataSource">
 
@@ -177,7 +177,7 @@
           </ng-container>
 
           <!--  заголовок таблицы-->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
           <!--  строки таблицы - набор строк из тегов td (порядок указывается в переменной displayedColumns) -->
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

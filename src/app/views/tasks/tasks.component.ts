@@ -74,7 +74,6 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.onSelectCategory(undefined);
   }
 
   private fillTable(): void {
@@ -116,8 +115,8 @@ export class TasksComponent implements OnInit {
   }
 
   private addTableObjects() {
-    this.dataSource.paginator = this.paginator; // обновить компонент постраничности (кол-во записей, страниц)
     this.dataSource.sort = this.sort; // компонент для сортировки данных (если необходимо)
+    this.dataSource.paginator = this.paginator; // обновить компонент постраничности (кол-во записей, страниц)
   }
 
   openEditTaskDialog(task: Task): void {
