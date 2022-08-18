@@ -5,6 +5,7 @@ import {Category} from "./model/Category";
 import {Priority} from "./model/Priority";
 import {concatMap, zip, map} from "rxjs";
 import {IntroService} from "./service/intro.service";
+import {Sidebar} from "ng-sidebar";
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,14 @@ export class AppComponent implements OnInit {
 
   showStat!: boolean;
 
+  // параметры бокового меню с категориями
+  menuOpened!: boolean;
+  menuMode!: 'push';
+  menuPosition!: 'left';
+  showBackdrop!: boolean;
+
   constructor(private dataHandler: DataHandlerService, private introService: IntroService) {
+    this.setMenuValues();
   }
 
   ngOnInit(): void {
@@ -184,5 +192,20 @@ export class AppComponent implements OnInit {
 
   showHelp() {
     this.introService.startIntroJS(false);
+  }
+
+  private setMenuValues() {
+    this.menuPosition = 'left'; // расположение слева
+    this.menuOpened = true; // меню сразу будет открыто по-умолчанию
+    this.menuMode = 'push'; // будет "толкать" основной контент, а не закрывать его
+    this.showBackdrop = false; // показывать темный фон или нет (нужно больше для мобильной версии)
+  }
+
+  toggleMenu() {
+    this.menuOpened = !this.menuOpened;
+  }
+
+  onClosedMenu() {
+    this.menuOpened = false;
   }
 }

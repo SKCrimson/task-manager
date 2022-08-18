@@ -26,16 +26,17 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
-import { EditCategoryDialogComponent } from './dialog/edit-category-dialog/edit-category-dialog.component';
-import { FooterComponent } from './views/footer/footer.component';
-import { AboutDialogComponent } from './dialog/about-dialog/about-dialog.component';
-import { HeaderComponent } from './views/header/header.component';
-import { StatComponent } from './views/stat/stat.component';
-import { StatCardComponent } from './views/stat/stat-card/stat-card.component';
-import { PrioritiesComponent } from './views/priorities/priorities.component';
+import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-category-dialog.component';
+import {FooterComponent} from './views/footer/footer.component';
+import {AboutDialogComponent} from './dialog/about-dialog/about-dialog.component';
+import {HeaderComponent} from './views/header/header.component';
+import {StatComponent} from './views/stat/stat.component';
+import {StatCardComponent} from './views/stat/stat-card/stat-card.component';
+import {PrioritiesComponent} from './views/priorities/priorities.component';
 import {ColorPickerModule} from "ngx-color-picker";
-import { SettingsDialogComponent } from './dialog/settings-dialog/settings-dialog.component';
-import { EditPriorityDialogComponent } from './dialog/edit-priority-dialog/edit-priority-dialog.component';
+import {SettingsDialogComponent} from './dialog/settings-dialog/settings-dialog.component';
+import {EditPriorityDialogComponent} from './dialog/edit-priority-dialog/edit-priority-dialog.component';
+import {SidebarModule} from "ng-sidebar";
 
 registerLocaleData(localeRu);
 
@@ -75,7 +76,8 @@ registerLocaleData(localeRu);
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    ColorPickerModule
+    ColorPickerModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
