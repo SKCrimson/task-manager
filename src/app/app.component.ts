@@ -4,6 +4,7 @@ import {Task} from "./model/Task";
 import {Category} from "./model/Category";
 import {Priority} from "./model/Priority";
 import {concatMap, zip, map} from "rxjs";
+import {IntroService} from "./service/intro.service";
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
 
   showStat!: boolean;
 
-  constructor(private dataHandler: DataHandlerService) {
+  constructor(private dataHandler: DataHandlerService, private introService: IntroService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +39,8 @@ export class AppComponent implements OnInit {
 
     this.refreshCategories();
     this.onSelectCategory(undefined);
+
+    this.introService.startIntroJS(true);
   }
 
   // Задачи
@@ -177,5 +180,9 @@ export class AppComponent implements OnInit {
       this.dataHandler.getUncompletedCountInCategory(category)
         .subscribe(count => this.categoryMap.set(category, count));
     });
+  }
+
+  showHelp() {
+    this.introService.startIntroJS(false);
   }
 }

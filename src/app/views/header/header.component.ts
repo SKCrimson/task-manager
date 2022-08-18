@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
   @Output()
   toggleStat = new EventEmitter<boolean>();
 
+  @Output()
+  help = new EventEmitter();
+
   constructor(private dialog: MatDialog) {
   }
 
@@ -32,5 +35,9 @@ export class HeaderComponent implements OnInit {
   showSettings() {
     const dialogRef = this.dialog.open(SettingsDialogComponent,
       {autoFocus: false, width: '500px'});
+  }
+
+  showHelp() {
+    this.help.emit();
   }
 }

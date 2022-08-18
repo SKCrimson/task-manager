@@ -1,33 +1,43 @@
 <div class="wrapper">
 
-  <app-categories
-    [selectedCategory]="selectedCategory"
-    [categories]="categories"
-    [categoryMap]="categoryMap"
-    [uncompletedTotal]="uncompletedTotalTasksCount"
+  <div class="sidebar"
+       data-color="purple"
+       data-step="1"
+       data-intro="Фильтрация задач, добавление/удаление/редактирование категорий"
+       data-position='right'>
+    <app-categories
+      [selectedCategory]="selectedCategory"
+      [categories]="categories"
+      [categoryMap]="categoryMap"
+      [uncompletedTotal]="uncompletedTotalTasksCount"
 
-    (actualCategory)="onSelectCategory($event)"
-    (deleteCategory)="onDeleteCategory($event)"
-    (updateCategory)="onUpdateCategory($event)"
-    (searchCategory)="onSearchCategory($event)"
-    (addCategory)="onAddCategory($event)">
-  </app-categories>
+      (actualCategory)="onSelectCategory($event)"
+      (deleteCategory)="onDeleteCategory($event)"
+      (updateCategory)="onUpdateCategory($event)"
+      (searchCategory)="onSearchCategory($event)"
+      (addCategory)="onAddCategory($event)">
+    </app-categories>
+  </div>
 
   <div class="main-panel">
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
       <app-header
         [categoryName]="selectedCategory ? selectedCategory.title : 'Все'"
-        (toggleStat)="toggleStat($event)">
+        (toggleStat)="toggleStat($event)"
+        (help)="showHelp()">
       </app-header>
     </nav>
 
     <div class="content">
       <div class="container-fluid">
-
-        <app-stat *ngIf="showStat" [totalTasksInCategory]="totalTasksCountInCategory"
-                  [completeTasksInCategory]="completedCountInCategory"
-                  [uncompletedTasksInCategory]="uncompletedCountInCategory">
-        </app-stat>
+        <div data-step="2"
+             data-intro="Статистика задач и их выполнения"
+             data-position='top'>
+          <app-stat *ngIf="showStat" [totalTasksInCategory]="totalTasksCountInCategory"
+                    [completeTasksInCategory]="completedCountInCategory"
+                    [uncompletedTasksInCategory]="uncompletedCountInCategory">
+          </app-stat>
+        </div>
 
         <div class="row">
           <div class="col-12">
