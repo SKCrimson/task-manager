@@ -25,10 +25,11 @@
         [uncompletedTotal]="uncompletedTotalTasksCount"
 
         (actualCategory)="onSelectCategory($event)"
+        (addCategory)="onAddCategory($event)"
         (deleteCategory)="onDeleteCategory($event)"
         (updateCategory)="onUpdateCategory($event)"
         (searchCategory)="onSearchCategory($event)"
-        (addCategory)="onAddCategory($event)">
+        (toggleMenu)="toggleMenu()">
       </app-categories>
     </div>
 

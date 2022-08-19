@@ -46,6 +46,9 @@ export class CategoriesComponent implements OnInit {
   @Output()
   searchCategory = new EventEmitter<string>();
 
+  @Output()
+  toggleMenu = new EventEmitter();
+
   indexMouseMove: number | undefined;
   searchCategoryTitle: string | undefined;
   isMobile!: boolean;
@@ -61,6 +64,9 @@ export class CategoriesComponent implements OnInit {
 
     if (this.selectedCategory === category)
       return;
+
+    if (this.isMobile)
+      this.toggleMenu.emit();
 
     this.selectedCategory = category;
     this.actualCategory.emit(this.selectedCategory);
