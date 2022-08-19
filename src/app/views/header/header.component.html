@@ -6,8 +6,8 @@
     </button>
 
     <p class="navbar-brand">{{categoryName}}</p>
-    <p class="link navbar-brand" (click)="onToggleStat()" *ngIf="showStat">Скрыть статистику</p>
-    <p class="link navbar-brand" (click)="onToggleStat()" *ngIf="!showStat">Показать статистику</p>
+    <p class="link navbar-brand" (click)="onToggleStat()" *ngIf="!isMobile && showStat">Скрыть статистику</p>
+    <p class="link navbar-brand" (click)="onToggleStat()" *ngIf="!isMobile && !showStat">Показать статистику</p>
   </div>
 
   <!--  помощь, настройки-->
@@ -15,7 +15,7 @@
     <button mat-icon-button class="header-icon" (click)="showSettings()">
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button class="header-icon" (click)="showHelp()">
+    <button mat-icon-button class="header-icon" (click)="showHelp()" *ngIf="!isMobile">
       <mat-icon>help</mat-icon>
     </button>
   </div>

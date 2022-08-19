@@ -5,7 +5,7 @@ import {Category} from "./model/Category";
 import {Priority} from "./model/Priority";
 import {concatMap, zip, map} from "rxjs";
 import {IntroService} from "./service/intro.service";
-import {Sidebar} from "ng-sidebar";
+import {DeviceDetectorService} from "ngx-device-detector";
 
 @Component({
   selector: 'app-root',
@@ -31,14 +31,17 @@ export class AppComponent implements OnInit {
   uncompletedTotalTasksCount!: number;
 
   showStat!: boolean;
+  isMobile!: boolean;
 
   // параметры бокового меню с категориями
   menuOpened!: boolean;
-  menuMode!: 'push';
+  menuMode!: 'push' | 'over';
   menuPosition!: 'left';
   showBackdrop!: boolean;
 
-  constructor(private dataHandler: DataHandlerService, private introService: IntroService) {
+  constructor(private dataHandler: DataHandlerService, private introService: IntroService, private deviceService: DeviceDetectorService) {
+    this.isMobile = this.deviceService.isMobile();
+
     this.setMenuValues();
   }
 
@@ -48,7 +51,8 @@ export class AppComponent implements OnInit {
     this.refreshCategories();
     this.onSelectCategory(undefined);
 
-    this.introService.startIntroJS(true);
+    if (!this.isMobile)
+      this.introService.startIntroJS(true);
   }
 
   // Задачи
@@ -139,7 +143,12 @@ export class AppComponent implements OnInit {
       });
   }
 
-  toggleStat(showStat: boolean) {
+  toggleStat(showStat: boolean): void {
+    if (this.isMobile) {
+      this.showStat = false;
+      return;
+    }
+
     this.showStat = showStat;
   }
 
@@ -196,9 +205,17 @@ export class AppComponent implements OnInit {
 
   private setMenuValues() {
     this.menuPosition = 'left'; // расположение слева
-    this.menuOpened = true; // меню сразу будет открыто по-умолчанию
-    this.menuMode = 'push'; // будет "толкать" основной контент, а не закрывать его
-    this.showBackdrop = false; // показывать темный фон или нет (нужно больше для мобильной версии)
+
+    if (this.isMobile){
+      this.menuOpened = false; // меню сразу будет открыто по-умолчанию
+      this.menuMode = 'over'; // будет "толкать" основной контент, а не закрывать его
+      this.showBackdrop = true; // показывать темный фон или нет (нужно больше для мобильной версии)
+    }
+    else {
+      this.menuOpened = true; // меню сразу будет открыто по-умолчанию
+      this.menuMode = 'push'; // будет "толкать" основной контент, а не закрывать его
+      this.showBackdrop = false; // показывать темный фон или нет
+    }
   }
 
   toggleMenu() {
