@@ -84,9 +84,6 @@
   <div class="col-md-12 task-list">
 
     <div class="card" *ngIf="!isMobile">
-      <!--      <div class="card-header card-header-warning">-->
-      <!--        <h4 class="card-title">Список задач</h4>-->
-      <!--      </div>-->
       <div class="card-body table-responsive" *ngIf="tasks && tasks.length > 0">
         <table mat-table matSort [dataSource]="dataSource">
 

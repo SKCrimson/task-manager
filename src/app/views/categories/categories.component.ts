@@ -14,9 +14,6 @@ import {DeviceDetectorService} from "ngx-device-detector";
 export class CategoriesComponent implements OnInit {
 
   @Input()
-  categories!: Category[];
-
-  @Input()
   selectedCategory: Category | undefined;
 
   categoryMap!: Map<Category, number>;

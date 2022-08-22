@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   categoryMap = new Map<Category, number>();
 
   tasks!: Task[];
-  categories!: Category[];
+  private categories!: Category[];
   priorities!: Priority[];
 
   selectedCategory: Category | undefined;
@@ -184,11 +184,16 @@ export class AppComponent implements OnInit {
     this.dataHandler.searchCategories(title).subscribe(categories => {
       this.categories = categories;
     });
+
+    this.setCategoryMap();
   }
 
   private refreshCategories() {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+    this.setCategoryMap();
+  }
 
+  private setCategoryMap() {
     if (this.categoryMap)
       this.categoryMap.clear();
 
@@ -206,12 +211,11 @@ export class AppComponent implements OnInit {
   private setMenuValues() {
     this.menuPosition = 'left'; // расположение слева
 
-    if (this.isMobile){
+    if (this.isMobile) {
       this.menuOpened = false; // меню сразу будет открыто по-умолчанию
       this.menuMode = 'over'; // будет "толкать" основной контент, а не закрывать его
       this.showBackdrop = true; // показывать темный фон или нет (нужно больше для мобильной версии)
-    }
-    else {
+    } else {
       this.menuOpened = true; // меню сразу будет открыто по-умолчанию
       this.menuMode = 'push'; // будет "толкать" основной контент, а не закрывать его
       this.showBackdrop = false; // показывать темный фон или нет
