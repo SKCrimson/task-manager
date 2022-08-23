@@ -22,7 +22,7 @@
                maxlength="256"
                placeholder="Поиск категорий"/>
         <button mat-button mat-icon-button matSuffix
-                *ngIf="inputSearchCategory.value.trim().length > 0"
+                *ngIf="inputSearchCategory.value.trim()"
                 (click)="searchCategoryTitle = ''; search()"
                 aria-label="Clear"
                 class="search-category-button size22 gray">

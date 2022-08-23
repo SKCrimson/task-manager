@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Task} from "../../model/Task";
 import {DataHandlerService} from "../../service/data-handler-service.service";
 
@@ -18,7 +18,7 @@ import {DeviceDetectorService} from "ngx-device-detector";
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category', 'operations', 'select'];
   dataSource!: MatTableDataSource<Task>;
@@ -69,8 +69,8 @@ export class TasksComponent implements OnInit {
   @Output()
   clearFilters = new EventEmitter<any>();
 
-  @ViewChild(MatPaginator, {static: false}) private paginator!: MatPaginator;
-  @ViewChild(MatSort, {static: false}) private sort!: MatSort;
+  @ViewChild(MatPaginator) private paginator!: MatPaginator;
+  @ViewChild(MatSort) private sort!: MatSort;
 
   constructor(private dataHandler: DataHandlerService, private dialog: MatDialog, private deviceService: DeviceDetectorService) {
     this.isMobile = deviceService.isMobile();
@@ -79,13 +79,15 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit(): void {
+    this.addTableObjects();
+  }
+
   private fillTable(): void {
     if (this.dataSource == null)
       this.dataSource = new MatTableDataSource<Task>(this.tasks);
     else
       this.dataSource.data = this.tasks;
-
-    this.addTableObjects();
 
     // @ts-ignore - показывает ошибку для типа даты, но так работает, т.к. можно возвращать любой тип
     this.dataSource.sortingDataAccessor = (task, colName) => {

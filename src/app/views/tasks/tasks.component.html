@@ -10,7 +10,7 @@
              [(ngModel)]="searchTaskText"
              placeholder="Поиск в текущей категории">
       <button mat-button mat-icon-button matSuffix
-              *ngIf="filterInput.value.trim().length > 0"
+              *ngIf="filterInput.value.trim()"
               (click)="searchTaskText = ''; onFilterByTitle()"
               aria-label="Clear"
               class="clear-icon size22 gray">
@@ -65,7 +65,7 @@
     <div class="row">
       <div class="text-left col-6 button-margin">
         <button mat-button matSuffix
-                *ngIf="(searchTaskText != undefined && searchTaskText.trim() != '') || selectedStatusFilter != undefined ||  selectedPriorityFilter != undefined"
+                *ngIf="(searchTaskText != undefined && searchTaskText.trim()) || selectedStatusFilter != undefined ||  selectedPriorityFilter != undefined"
                 (click)="$event.stopPropagation(); onClearFilters();"
                 aria-label="Clear">
           Сбросить фильтры
