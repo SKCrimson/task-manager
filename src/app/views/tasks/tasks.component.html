@@ -118,8 +118,7 @@
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Срок</th>
             <td mat-cell class="col-date" *matCellDef="let task"
                 [ngClass]="{'completed': task.completed, 'no-value': task.date == null}">
-              <!--{{task.date | taskDate}}-->
-              {{task.date | date: "dd.MM.YYYY hh.MM"}}
+              {{task.date | taskDate: 'dd.MM.YYYY HH.mm'}}
             </td>
           </ng-container>
 

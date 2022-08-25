@@ -32,8 +32,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
   isMobile!: boolean;
 
   @Input('tasks')
-  set setTasks(value: Task[]) {
-    this.tasks = value;
+  set setTasks(tasks: Task[]) {
+    this.tasks = tasks;
     this.fillTable();
   }
 
@@ -43,7 +43,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
   }
 
   @Input()
-  actualCategory: Category | undefined;
+  selectedCategory: Category | undefined;
 
   @Output()
   addTask = new EventEmitter<Task>();
@@ -200,7 +200,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
   }
 
   openAddTaskDialog(): void {
-    const task = new Task(0, '', false, undefined, this.actualCategory, undefined);
+    const task = new Task(0, '', false, undefined, this.selectedCategory, undefined);
 
     const dialogRef = this.dialog.open(EditTaskDialogComponent, {data: [task, 'Добавление задачи', OpenType.ADD]});
     dialogRef.afterClosed().subscribe(result => {

@@ -33,7 +33,7 @@ export class TestData {
       priority: TestData.priorities[2],
       completed: false,
       category: TestData.categories[9],
-      date: new Date('2019-04-10')
+      date: new Date('2022-08-25')
     },
 
     {
@@ -42,7 +42,7 @@ export class TestData {
       priority: TestData.priorities[0],
       completed: false,
       category: TestData.categories[0],
-      date: new Date('2019-04-11')
+      date: new Date('2022-08-24')
     },
 
     {
@@ -59,7 +59,7 @@ export class TestData {
       priority: TestData.priorities[1],
       completed: false,
       category: TestData.categories[1],
-      date: new Date('2019-08-17')
+      date: new Date('2022-08-26')
     },
 
     {
@@ -130,7 +130,7 @@ export class TestData {
       priority: TestData.priorities[2],
       completed: false,
       category: TestData.categories[5],
-      date: new Date('2019-05-11')
+      date: new Date('2022-08-26')
     },
 
     {

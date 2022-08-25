@@ -6,33 +6,46 @@ import {DatePipe} from '@angular/common';
 })
 export class TaskDatePipe implements PipeTransform {
 
-  transform(date: Date | string, format: string = 'mediumDate'): string | null {
+  private readonly datepipe: DatePipe = new DatePipe('ru-RU');
 
-    if (date == null) {
+  private readonly currentDate!: string | null;
+  private readonly yesterday!: string | null;
+  private readonly tomorrow!: string | null;
+
+  constructor() {
+    let currentDate = new Date();
+    this.currentDate = this.datepipe.transform(currentDate, 'dd-MMM-YYYY')
+
+    let yesterday = this.addDays(currentDate, -1);
+    this.yesterday = this.datepipe.transform(yesterday, 'dd-MMM-YYYY')
+
+    let tomorrow = this.addDays(new Date(), 1);
+    this.tomorrow = this.datepipe.transform(tomorrow, 'dd-MMM-YYYY')
+  }
+
+  transform(date: Date | string, format: string = 'fullDate'): string | null {
+
+    if (date == undefined)
       return '';
-    }
 
     date = new Date(date);
-    const currentDate = new Date();
+    let dateWithoutTime = this.datepipe.transform(date, 'dd-MMM-YYYY')
 
-    if (date == currentDate)
+    if (dateWithoutTime == this.currentDate)
       return 'Сегодня';
 
-    const date1 = this.addDays(currentDate, -1);
-
-    if (date == date1)
+    if (dateWithoutTime == this.yesterday)
       return 'Вчера';
 
-    const date2 = this.addDays(currentDate, 1);
-
-    if (date == date2)
+    if (dateWithoutTime == this.tomorrow)
       return 'Завтра';
 
-    return new DatePipe('ru-RU').transform(date, format);
+    return this.datepipe.transform(date, format);
   }
 
   private addDays(date: Date, days: number): Date {
     date.setDate(date.getDate() + days);
+
     return date;
   }
 }
